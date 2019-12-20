@@ -10,7 +10,9 @@ export default class Index extends Component {
 
   componentWillMount () { }
 
-  componentDidMount () { }
+  componentDidMount () { 
+    
+  }
 
   componentWillUnmount () { }
 
