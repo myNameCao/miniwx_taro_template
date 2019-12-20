@@ -4,7 +4,10 @@ import './index.less'
 
 export default class Index extends Component {
 
- 
+  config = {
+    navigationBarTitleText: '首页'
+  }
+
   componentWillMount () { }
 
   componentDidMount () { }
@@ -14,9 +17,6 @@ export default class Index extends Component {
   componentDidShow () { }
 
   componentDidHide () { }
-  config = {
-    navigationBarTitleText: '首页'
-  }
 
   render () {
     return (
