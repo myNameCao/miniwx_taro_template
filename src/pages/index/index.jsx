@@ -1,17 +1,18 @@
+/* eslint-disable react/sort-comp */
 import Taro, { Component } from '@tarojs/taro'
-import { View, Text } from '@tarojs/components'
+import { View, Image ,  Input ,Button} from '@tarojs/components'
 import './index.less'
+import  logo from './logo.png'
 
 export default class Index extends Component {
 
   config = {
-    navigationBarTitleText: '首页'
+    navigationBarTitleText: '地推身份登记'
   }
 
   componentWillMount () { }
 
   componentDidMount () { 
-    this.a = 11
   }
 
   componentWillUnmount () { }
@@ -20,10 +21,14 @@ export default class Index extends Component {
 
   componentDidHide () { }
 
+
   render () {
     return (
       <View className='index'>
-        <Text>Hello world!</Text>
+         <View className='logo'><Image src={logo} /></View>
+         <View className='telphone line'><Input type='text' placeholder='q' /></View>
+         <View className='code line'><Input type='text' /></View>
+         <Button className='btn' >下一步</Button>
       </View>
     )
   }

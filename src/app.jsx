@@ -11,7 +11,7 @@ import './app.less'
 
 class App extends Component {
 
-  config =        {
+  config = {
     pages: [
       'pages/index/index'
     ],
