@@ -11,7 +11,7 @@ export default class Index extends Component {
   componentWillMount () { }
 
   componentDidMount () { 
-    
+    this.a = 11
   }
 
   componentWillUnmount () { }
