@@ -18,7 +18,7 @@ export default class Qrcode extends Component {
   componentDidMount () {
     const _this=this;
     const query = Taro.createSelectorQuery().in(this.$scope)
-        query.select('.parentcode').boundingClientRect(rect =>{
+        query.select('.qrcodeView').boundingClientRect(rect =>{
             _this.height=rect.height
             _this.creatQrcode('chris')
         }).exec();
@@ -32,24 +32,25 @@ export default class Qrcode extends Component {
   creatQrcode (str) {
     if(!str)return
     drawQrcode ({
-      width: this.height,
-      height: this.height,
+      width: this.height-20,
+      height: this.height-20,
       canvasId: 'myQrcode',
+      x:10,
+      y:10,
       text: str
     })
   }
   creatpng () {
     let  height=this.height
     wx.canvasToTempFilePath({
-      x: 0,
-      y: 0,
-      width:height,
-      height:height,
-      destWidth: 250,
-      destHeight: 250,
+      x: 10,
+      y: 10,
+      width:height-20,
+      height:height-20,
+      destWidth: 150,
+      destHeight: 150,
       canvasId: 'myQrcode',
       success (res) {
-        console.log(res.tempFilePath)
         wx.saveImageToPhotosAlbum({
           filePath: res.tempFilePath,
           success () { 
@@ -68,9 +69,7 @@ export default class Qrcode extends Component {
          <View className='title'>中国最大的职业司机充换电平台</View>
          <View className='imgView'><Image src={backimg} /></View>
          <View className='qrcodeView'>
-           <View className='parentcode'>
                <Canvas className='code' canvasId='myQrcode' />
-           </View>
           </View>
          <View   onClick={this.creatpng.bind(this)} className='btnSave'>保存至手机相册</View>
       </View>
