@@ -15,7 +15,6 @@ export default class Index extends Component {
   }
   time=''
 
-  componentWillMount () { }
 
   componentDidMount () { 
   }

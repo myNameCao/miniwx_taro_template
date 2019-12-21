@@ -20,7 +20,7 @@ export default class Qrcode extends Component {
     const query = Taro.createSelectorQuery().in(this.$scope)
         query.select('.qrcodeView').boundingClientRect(rect =>{
             _this.height=rect.height
-            _this.creatQrcode('chris')
+            _this.creatQrcode('https://gkd-mp-key.oss-cn-beijing.aliyuncs.com/finalData/?data=cao13nskdfhskhfkshfkshfkshfkshfkshfkhskfhskhfksdhfkshfkshfkshfkhskfhskfhksfhkshfkshfkshfkshfkshfkhskfhskf73132318123232323232232321caohefei')
         }).exec();
   
   }
