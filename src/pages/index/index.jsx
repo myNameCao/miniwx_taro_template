@@ -8,7 +8,7 @@ export default class Index extends Component {
 
   config = {
     navigationBarTitleText: '地推身份登记',
-    phone:'',
+    phone:2,
     code:'',
     getCodeing:false,
     secend:60
