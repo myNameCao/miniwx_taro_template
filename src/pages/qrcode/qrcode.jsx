@@ -38,6 +38,29 @@ export default class Qrcode extends Component {
       text: str
     })
   }
+  creatpng () {
+    let  height=this.height
+    wx.canvasToTempFilePath({
+      x: 0,
+      y: 0,
+      width:height,
+      height:height,
+      destWidth: 250,
+      destHeight: 250,
+      canvasId: 'myQrcode',
+      success (res) {
+        console.log(res.tempFilePath)
+        wx.saveImageToPhotosAlbum({
+          filePath: res.tempFilePath,
+          success () { 
+            wx.showToast({
+              title: '已保存到相册'
+          })
+          }
+        })
+      }
+    })
+  }
   render () {
     return (
       <View className='qrcode'>
@@ -49,7 +72,7 @@ export default class Qrcode extends Component {
                <Canvas className='code' canvasId='myQrcode' />
            </View>
           </View>
-         <View className='btnSave'>保存至手机相册</View>
+         <View   onClick={this.creatpng.bind(this)} className='btnSave'>保存至手机相册</View>
       </View>
     )
   }
