@@ -39,6 +39,13 @@
 					"id": -1,
 					"name": "pages/qrcode/qrcode",
 					"pathName": "pages/qrcode/qrcode",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/login/login",
+					"pathName": "pages/login/login",
 					"scene": null
 				}
 			]

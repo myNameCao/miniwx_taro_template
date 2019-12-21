@@ -14,6 +14,7 @@ class App extends Component {
   config = {
     pages: [
       'pages/index/index',
+      'pages/login/login',
       'pages/qrcode/qrcode'
     ],
     window: {
