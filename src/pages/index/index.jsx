@@ -12,7 +12,6 @@ export default class Index extends Component {
   config = {
     navigationBarTitleText: '首页'
   }
-
   componentWillMount () { }
 
   componentDidMount () { }
@@ -25,7 +24,7 @@ export default class Index extends Component {
 
   render () {
     return (
-      <View className='login'>
+      <View className='index'>
         <Text>Hello world!</Text>
       </View>
     )

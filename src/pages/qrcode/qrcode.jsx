@@ -17,10 +17,11 @@ export default class Qrcode extends Component {
 
   componentDidMount () {
     const _this=this;
+    const { urlStr }=this.$router.params ||'https://gkd-mp-key.oss-cn-beijing.aliyuncs.com/finalData/?data=cao13nskdfhskhfkshfkshfkshfkshfkshfkhskfhskhfksdhfkshfkshfkshfkhskfhskfhksfhkshfkshfkshfkshfkshfkhskfhskf73132318123232323232232321caohefei'
     const query = Taro.createSelectorQuery().in(this.$scope)
         query.select('.qrcodeView').boundingClientRect(rect =>{
             _this.height=rect.height
-            _this.creatQrcode('https://gkd-mp-key.oss-cn-beijing.aliyuncs.com/finalData/?data=cao13nskdfhskhfkshfkshfkshfkshfkshfkhskfhskhfksdhfkshfkshfkshfkhskfhskfhksfhkshfkshfkshfkshfkshfkhskfhskf73132318123232323232232321caohefei')
+            _this.creatQrcode(urlStr)
         }).exec();
   
   }

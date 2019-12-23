@@ -24,9 +24,9 @@ export default class Login extends Component {
 
   componentDidHide () { }
 
-  nextClick () {
+  nextClick (res) {
      Taro.navigateTo({
-       url:'/pages/qrcode/qrcode'
+       url:`/pages/qrcode/qrcode?urlStr=${res}`
      })
   }
   telChange (e){
