@@ -1,8 +1,17 @@
 {
   "extends": ["taro"],
+   /**
+   * 'off'    或 0 - 关闭规则
+   * 'warn'   或 1 - 开启规则，使用警告级别的错误：warn (不会导致程序退出),
+   * 'error'  或 2 - 开启规则，使用错误级别的错误：error (当被触发的时候，程序会退出)
+   */
   "rules": {
     "no-unused-vars": ["error", { "varsIgnorePattern": "Taro" }],
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx", ".tsx"] }],
+    "no-multiple-empty-lines": [1, {"max": 2}],
+    "space-in-parens": 2,
+    "no-redeclare": 2,
+    "no-var": 0,
     "react/sort-comp": [1, {
       "order": [
         "config",

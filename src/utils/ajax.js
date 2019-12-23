@@ -8,8 +8,6 @@ import api from '../config/index';
 const czb_api = api['czb_api'];
 
 
-
-
 const BASE = czb_api[czb_api.ENV];
 
 let encryptedData = '',wechatToken='',iv='';
@@ -68,7 +66,9 @@ export const login = P =>{
                 wx.redirectTo({
                   url:'/pages/login/login'
                 });//  携带  wechatToken  进入注册页面
+               
                 wechatToken=res.data.result.wechatMPToken;
+                console.log(res.data.result.wechatMPToken)
               }
             },
             success(res){
