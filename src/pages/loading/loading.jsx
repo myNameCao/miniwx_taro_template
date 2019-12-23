@@ -1,11 +1,12 @@
 import Taro, { Component } from '@tarojs/taro'
-import { View, Text } from '@tarojs/components'
+import { View, Image } from '@tarojs/components'
+import logo from './logoloding.png'
 import './loading.less'
 
 export default class Loading extends Component {
 
   config = {
-    navigationBarTitleText: '首页'
+    navigationBarTitleText: '加载页'
   }
 
   componentWillMount () { }
@@ -21,7 +22,13 @@ export default class Loading extends Component {
   render () {
     return (
       <View className='loading'>
-        <Text>Hello world!</Text>
+        <View className='logo'><Image src={logo} /></View>
+        <View className='lds-ellipsis'>
+          <View className='item'></View>
+          <View className='item'></View>
+          <View className='item'></View>
+          <View className='item'></View>
+        </View>
       </View>
     )
   }
