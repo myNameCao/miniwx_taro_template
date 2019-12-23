@@ -9,6 +9,7 @@ const  czb_api =api['czb_api'];
 
 
 
+
 const  BASE = czb_api[czb_api.ENV];
 
 let  encryptedData='',wechatToken='',iv='';
@@ -76,11 +77,7 @@ export const login = P =>{
                   },
                   success(res){
                     wx.setStorage({ key: 'Token', data: res.result.token });
-                    wx.setStorage({ key: 'name', data: res.result.nickName||'' });
                     //  获得当前页面   刷新
-                  let  pages=getCurrentPages()
-                  let  currentPage=pages[pages.length-1];
-                       currentPage.onShow()
                   }
                 })
       });
@@ -117,7 +114,6 @@ export const signUp = P =>{
     },
     success(res){
       wx.setStorage({ key: 'Token', data: res.result.token });
-      wx.setStorage({ key: 'name', data: res.result.nickName||'' });
       wx.redirectTo({
         url:'/pages/index/index'
       })

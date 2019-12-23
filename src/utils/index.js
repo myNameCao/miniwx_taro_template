@@ -3,7 +3,6 @@
  
 import safetyCertificate  from './safetyCertificate'
 
-console.log(safetyCertificate)
 var formatTime = function formatTime(date) {
   var year = date.getFullYear();
   var month = date.getMonth() + 1;

@@ -3,13 +3,17 @@ import { View, Image } from '@tarojs/components'
 import logo from './logoloding.png'
 import './loading.less'
 
+import  {login} from '../../utils/ajax'
+
 export default class Loading extends Component {
 
   config = {
-    navigationBarTitleText: '加载页'
+    navigationBarTitleText: 'loading'
   }
-
-  componentWillMount () { }
+  
+  componentWillMount () { 
+    login({})
+  }
 
   componentDidMount () { }
 
