@@ -5,14 +5,14 @@ import util from './index.js';
 
 import api from '../config/index';
 
-const  czb_api =api['czb_api'];
+const czb_api = api['czb_api'];
 
 
 
 
-const  BASE = czb_api[czb_api.ENV];
+const BASE = czb_api[czb_api.ENV];
 
-let  encryptedData='',wechatToken='',iv='';
+let encryptedData = '',wechatToken='',iv='';
 
 export const ajax = P => {
   let data =P.data ||{};
@@ -80,11 +80,11 @@ export const login = P =>{
             }
           })
       });
-};  //登录接口
+}; //登录接口
 export const Authorization = P =>{
     encryptedData=P.encryptedData,
     iv=P.iv
-};  //登录授权
+}; //登录授权
 export const checkAuthorization = type =>{
   let p= new Promise(function(resolve){
             wx.getSetting({
@@ -96,16 +96,16 @@ export const checkAuthorization = type =>{
             })
          })
          return p
-};  // 判断授权 
+}; // 判断授权 
 
 export const signUp = P =>{
-  if(!encryptedData) return  false // 如果微信没有授权   return  false 检测重新授权
+  if(!encryptedData) return false // 如果微信没有授权   return  false 检测重新授权
   ajax({
     url:'signUp',
+    loading:true,
     data:{
       phone:P.phone,
       code:P.code,
-      loading:true,
       wechatToken:wechatToken,
       encryptedData:encryptedData,
       iv:iv
@@ -118,7 +118,7 @@ export const signUp = P =>{
     }
   })
   return true 
-};  //注册接口
+}; //注册接口
 
 
 
