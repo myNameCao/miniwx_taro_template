@@ -2,7 +2,7 @@
 export  default  {
   czb_api: {
     ENV: "dev",
-    platformType:10088001,
+    platformType:'',
     master: {
       appKey: "kd_prod_mp",
       appId:'wx01440835f1987e8b',
@@ -16,9 +16,9 @@ export  default  {
       host: "https://test-mpcs.fleetingpower.com",
     },
     path: {
-      getTelCode: "/services/v3/begin/commonSendMsg",//  get phone code
-      signUp: "/services/v3/user/sdwechatMPRegisterLoginAppV4", // login
-      signIn: "/services/v3/user/sdwechatMPLoginAppV4", // signIn
+      getTelCode: "/services/v3/promoterBegin/sendMsg",//  get phone code
+      signUp: "/services/v3/promoterBegin/wechatMPRegisterLogin", // login
+      signIn: "/services/v3/promoterBegin/wechatMPLogin", // signIn
       userInfo: "/services/v3/user/findMyInfoAppV4" // user Info
     }
   },

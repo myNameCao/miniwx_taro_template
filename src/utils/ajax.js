@@ -61,7 +61,6 @@ export const login = P =>{
             url:P.url||'signIn',
             data:{
               code: code,
-              platformType: czb_api.platformType
             },
             special(res){
               wx.hideLoading();
@@ -69,7 +68,7 @@ export const login = P =>{
                 wx.redirectTo({
                   url:'/pages/login/login'
                 });//  携带  wechatToken  进入注册页面
-                wechatToken=res.data.result.token;
+                wechatToken=res.data.result.wechatMPToken;
               }
             },
             success(res){
@@ -109,7 +108,6 @@ export const signUp = P =>{
       loading:true,
       wechatToken:wechatToken,
       encryptedData:encryptedData,
-      platformType: czb_api.platformType,
       iv:iv
     },
     success(res){

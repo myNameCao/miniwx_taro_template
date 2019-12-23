@@ -41,6 +41,15 @@ export default class Login extends Component {
   componentDidHide () { }
 
   nextClick () {
+    let str=  this.checkoutlogin(this.state.phone,this.state.code)
+    if(str){
+      Taro.showToast({
+        title: str,
+        icon: 'none',
+        duration: 2000
+      })
+      return
+    }
     if(!signUp({phone:this.state.phone,code:this.state.code,})){
       this.setState({
         showDialog:true
