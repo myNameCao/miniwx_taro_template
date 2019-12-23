@@ -48,38 +48,38 @@ export const ajax = P => {
 };
 export const login = P =>{
    wx.removeStorageSync('Token');
- 
    const promiseWx = new Promise(function(resolve) {
-                     
-                        wx.login({
-                          success: res => {
-                            let code = res.code;
-                            resolve(code)
-                          }
-                        });
+        wx.login({
+          success: res => {
+            let code = res.code;
+            resolve(code)
+          }
+        });
    });
    promiseWx.then(function(code){
-    
-              ajax({
-                  url:P.url||'signIn',
-                  data:{
-                    code: code,
-                    platformType: czb_api.platformType
-                  },
-                  special(res){
-                    wx.hideLoading();
-                    if (res.data.code === 201&&!P.notMust){
-                      wx.redirectTo({
-                        url:'/pages/login/login'
-                     });//  携带  wechatToken  进入注册页面
-                     wechatToken=res.data.result.token;
-                    }
-                  },
-                  success(res){
-                    wx.setStorage({ key: 'Token', data: res.result.token });
-                    //  获得当前页面   刷新
-                  }
-                })
+      ajax({
+            url:P.url||'signIn',
+            data:{
+              code: code,
+              platformType: czb_api.platformType
+            },
+            special(res){
+              wx.hideLoading();
+              if (res.data.code === 201&&!P.notMust){
+                wx.redirectTo({
+                  url:'/pages/login/login'
+                });//  携带  wechatToken  进入注册页面
+                wechatToken=res.data.result.token;
+              }
+            },
+            success(res){
+              wx.setStorage({ key: 'Token', data: res.result.token });
+              wx.redirectTo({
+                url:'/pages/qrcode/qrcode'
+              });//  携带  wechatToken  进入注册页面
+              //  获得当前页面   刷新
+            }
+          })
       });
 };  //登录接口
 export const Authorization = P =>{
@@ -114,8 +114,8 @@ export const signUp = P =>{
     },
     success(res){
       wx.setStorage({ key: 'Token', data: res.result.token });
-      wx.redirectTo({
-        url:'/pages/index/index'
+      Taro.navigateTo({
+        url:`/pages/qrcode/qrcode?urlStr=${res}`
       })
     }
   })

@@ -2,6 +2,8 @@ import Taro, { Component } from '@tarojs/taro'
 import { View, Image ,  Input ,Button} from '@tarojs/components'
 import './login.less'
 import  logo from './logo.png'
+import  {ajax ,checkAuthorization,Authorization,signUp} from '../../utils/ajax'
+import  Dialog from '../../components/Dailog'
 
 export default class Login extends Component {
 
@@ -9,13 +11,27 @@ export default class Login extends Component {
     navigationBarTitleText: '地推身份登记',
     phone:2,
     code:'',
+    showDialog:false,
     getCodeing:false,
     secend:60
   }
   time=''
 
 
-  componentDidMount () { 
+  componentDidMount () {
+     
+    let _this = this
+    checkAuthorization('userInfo').then(function(isPass){
+      if(!isPass){
+        _this.setState({
+          showDialog:true
+        })
+      }else{
+        wx.getUserInfo({success(res){
+          Authorization(res)
+        }})
+      }
+    }) 
   }
 
   componentWillUnmount () { }
@@ -24,10 +40,12 @@ export default class Login extends Component {
 
   componentDidHide () { }
 
-  nextClick (res) {
-     Taro.navigateTo({
-       url:`/pages/qrcode/qrcode?urlStr=${res}`
-     })
+  nextClick () {
+    if(!signUp({phone:this.state.phone,code:this.state.code,})){
+      this.setState({
+        showDialog:true
+       })
+    }
   }
   telChange (e){
     let str=e.target.value.replace(/\D/g,'')*1||'';
@@ -62,13 +80,13 @@ export default class Login extends Component {
     }
      Taro.removeStorageSync('Token')
      this.creatTnterval()
-    //  ajax({
-    //    url:'getTelCode',
-    //    data:{
-    //      type:'dada',
-    //      phone:this.state.phone,
-    //    }
-    //  })
+     ajax({
+       url:'getTelCode',
+       data:{
+         type:'dada',
+         phone:this.state.phone,
+       }
+     })
   }
   creatTnterval (){
     const _this=this;
@@ -100,6 +118,12 @@ export default class Login extends Component {
    })
    return  str
   }
+  getUserInfo(data){
+    this.setState({
+      showDialog:false
+    })
+    Authorization(data.detail)
+  }
   render () {
     return (
       <View className='index'>
@@ -111,6 +135,15 @@ export default class Login extends Component {
            <View onClick={this.getCode.bind(this)} className={['getcode',this.state.getCodeing?'graycode':'']}>{this.state.getCodeing?`${this.state.secend} s`:'获取验证码'}</View>
          </View>
          <Button className='btn' onClick={this.nextClick} >下一步</Button>
+         {this.state.showDialog&&<Dialog  >
+            <View   className='logContent' >
+                <View  className='logTitle'>想要你的授权</View>
+                <View  className='logmsg'>为了提供更好的服务</View>
+                <View  className='logmsg'>请在稍后的提示框点击“允许”</View>
+                <View  className='logImage'></View>
+                <Button   open-type='getUserInfo'   onGetuserinfo={this.getUserInfo} className='logBtn' >我知道了</Button>
+            </View>
+          </Dialog>}
       </View>
     )
   }

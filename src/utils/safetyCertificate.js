@@ -11,6 +11,7 @@ import MD5 from 'md5'
 import api from '../config/index'
 
 const czb_api=api['czb_api']
+
 const BASE=czb_api[czb_api.ENV]
 
 const generate =  res => {

@@ -1,7 +1,7 @@
 
 export  default  {
   czb_api: {
-    ENV: "master",
+    ENV: "dev",
     platformType:10088001,
     master: {
       appKey: "kd_prod_mp",
