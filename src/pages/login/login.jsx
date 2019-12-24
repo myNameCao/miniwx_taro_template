@@ -14,7 +14,6 @@ export default class Login extends Component {
   state={
     phone:'',
     code:'',
-    loading:'loading',
     canSend:true,
     showDialog:false,
     getCodeing:false,
@@ -150,8 +149,8 @@ export default class Login extends Component {
            <Input  onInput={this.codeChange} value={this.state.code} placeholderClass='placeholderClass' type='number' placeholder='请输入验证码' />
            <View onClick={this.getCode.bind(this)} className={['getcode',this.state.getCodeing ? 'graycode' : '']}>{this.state.getCodeing ? `${this.state.secend} s` : '获取验证码'}</View>
          </View>
-         <Button className='btn' onClick={this.nextClick} >下一步</Button>
-         <Loading  status={this.state.loading} size='50' color='white' ></Loading>
+    <Button className='btn' onClick={this.nextClick} >{this.state.canSend ? '下一步' : <Loading  status='loading' size='40' color='white' ></Loading>}</Button>
+         
          {this.state.showDialog && <Dialog  >
             <View   className='logContent' >
                 <View  className='logTitle'>想要你的授权</View>
