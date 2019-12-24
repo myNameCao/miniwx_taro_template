@@ -16,11 +16,12 @@ export default class Qrcode extends Component {
   componentWillMount () { }
 
   componentDidMount () {
-    const _this=this;
-    const { urlStr }=this.$router.params ||'https://gkd-mp-key.oss-cn-beijing.aliyuncs.com/finalData/?data=cao13nskdfhskhfkshfkshfkshfkshfkshfkhskfhskhfksdhfkshfkshfkshfkhskfhskfhksfhkshfkshfkshfkshfkshfkhskfhskf73132318123232323232232321caohefei'
+    const _this = this;
+  console.log(this.$router.params)
+    const { urlStr } = this.$router.params;
     const query = Taro.createSelectorQuery().in(this.$scope)
         query.select('.qrcodeView').boundingClientRect(rect =>{
-            _this.height=rect.height
+            _this.height = rect.height
             _this.creatQrcode(urlStr)
         }).exec();
   
@@ -33,8 +34,8 @@ export default class Qrcode extends Component {
   creatQrcode (str) {
     if(!str)return
     drawQrcode ({
-      width: this.height-20,
-      height: this.height-20,
+      width:this.height - 20,
+      height:this.height - 20,
       canvasId: 'myQrcode',
       x:10,
       y:10,
@@ -42,12 +43,12 @@ export default class Qrcode extends Component {
     })
   }
   creatpng () {
-    let  height=this.height
+    let  height = this.height
     wx.canvasToTempFilePath({
       x: 10,
       y: 10,
-      width:height-20,
-      height:height-20,
+      width:height - 20,
+      height:height - 20,
       destWidth: 150,
       destHeight: 150,
       canvasId: 'myQrcode',

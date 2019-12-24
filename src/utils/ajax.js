@@ -10,33 +10,33 @@ const czb_api = api['czb_api'];
 
 const BASE = czb_api[czb_api.ENV];
 
-let encryptedData = '',wechatToken='',iv='';
+let encryptedData = '',wechatToken = '',iv = '';
 
 export const ajax = P => {
-  let data =P.data ||{};
-  let portUrl =BASE['host']+czb_api['path'][P.url]
-  data.token = wx.getStorageSync('Token')||'';
+  let data = P.data || {};
+  let portUrl = BASE['host'] + czb_api['path'][P.url]
+  data.token = wx.getStorageSync('Token') || '';
   let datas = util.generate(data);
   if(P.loading){wx.showLoading({title: '加载中',mask:true})}
   wx.request({
     url: portUrl,
     data: datas,
-    method: P.type||'POST',
+    method: P.type || 'POST',
     header: {
       'content-type': 'application/x-www-form-urlencoded'
     },
     success: function(res) {
     if(P.loading){wx.hideLoading()}
-    let errObj=erroeMes[res.data.code];
-      if(res.data.code!=200){//  异常捕捉
-        P.special?P.special(res):(errObj?errObj.callBack(res.data,login):erroeMes.default(res.data,P.error))
+    let errObj = erroeMes[res.data.code];
+      if(res.data.code != 200){//  异常捕捉
+        P.special ? P.special(res) : (errObj ? errObj.callBack(res.data,login) : erroeMes.default(res.data,P.error))
       }else{
-        P.success&&P.success(res.data)
+        P.success && P.success(res.data)
       }
     },
     fail: function(res) {
       if(P.loading){wx.hideLoading()}
-      P.fail&& P.fail(res)
+      P.fail && P.fail(res)
       wx.showToast({
         title: '网络请求失败，请检查您的网络配置',
         icon: 'none'
@@ -56,25 +56,25 @@ export const login = P =>{
    });
    promiseWx.then(function(code){
       ajax({
-            url:P.url||'signIn',
+            url:P.url || 'signIn',
             data:{
               code: code,
             },
             special(res){
               wx.hideLoading();
-              if (res.data.code === 201&&!P.notMust){
+              if (res.data.code === 201 && !P.notMust){
                 wx.redirectTo({
                   url:'/pages/login/login'
                 });//  携带  wechatToken  进入注册页面
                
-                wechatToken=res.data.result.wechatMPToken;
+                wechatToken = res.data.result.wechatMPToken;
                 console.log(res.data.result.wechatMPToken)
               }
             },
             success(res){
-              wx.setStorage({ key: 'Token', data: res.result.token });
+              // wx.setStorage({ key: 'Token', data: res.result.token });
               wx.redirectTo({
-                url:'/pages/qrcode/qrcode'
+                url:`/pages/qrcode/qrcode?urlStr=${res.result.invitationUrl}`
               });//  携带  wechatToken  进入注册页面
               //  获得当前页面   刷新
             }
@@ -82,15 +82,15 @@ export const login = P =>{
       });
 }; //登录接口
 export const Authorization = P =>{
-    encryptedData=P.encryptedData,
-    iv=P.iv
+    encryptedData = P.encryptedData,
+    iv = P.iv
 }; //登录授权
 export const checkAuthorization = type =>{
-  let p= new Promise(function(resolve){
+  let p = new Promise(function(resolve){
             wx.getSetting({
               success (res) {
-                let obj=res.authSetting
-                let str='scope.'+type
+                let obj = res.authSetting
+                let str = 'scope.' + type
                 resolve(obj[str])
               }
             })
@@ -106,21 +106,17 @@ export const signUp = P =>{
     data:{
       phone:P.phone,
       code:P.code,
-      wechatToken:wechatToken,
+      wechatMPToken:wechatToken,
       encryptedData:encryptedData,
       iv:iv
     },
     success(res){
-      wx.setStorage({ key: 'Token', data: res.result.token });
+     
       Taro.navigateTo({
-        url:`/pages/qrcode/qrcode?urlStr=${res}`
+        url:`/pages/qrcode/qrcode?urlStr=${res.result.invitationUrl}`
       })
     }
   })
   return true 
 }; //注册接口
-
-
-
-
 

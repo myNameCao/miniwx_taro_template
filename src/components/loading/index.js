@@ -12,17 +12,18 @@ export default class Loading extends Component {
     }
     render () {
       const { color, size ,status } = this.props
+      console.log(color, size ,status)
       const sizeStyle = {
         width: size ? `${Taro.pxTransform(parseInt(size))}` : '',
         height: size ? `${Taro.pxTransform(parseInt(size))}` : '',
       }
-      let ishow=status=='noMore'
+      let ishow = status == 'noMore'
 
-      let ishowConent=status=='noMore'||status=='loading'
+      let ishowConent = status == 'noMore' || status == 'loading'
      
       const contStyle = {
-        height: size ? `${Taro.pxTransform(parseInt(size)+50)}` : '',
-        lineHeight: size ? `${Taro.pxTransform(parseInt(size)+50)}` : '',
+        height: size ? `${Taro.pxTransform(parseInt(size) + 50)}` : '',
+        lineHeight: size ? `${Taro.pxTransform(parseInt(size) + 50)}` : '',
       }
       const colorStyle = {
         'border': color ? `1px solid ${color}` : '',
@@ -31,13 +32,13 @@ export default class Loading extends Component {
       const ringStyle = Object.assign({}, colorStyle, sizeStyle)
      return (
          <View>
-            {ishowConent&&<View style={contStyle}   className='loadingContent' >
-                {!ishow&&<View  className='at-loading' style={sizeStyle}>
+            {ishowConent && <View style={contStyle}   className='loadingContent' >
+                {!ishow && <View  className='at-loading' style={sizeStyle}>
                         <View className='at-loading__ring' style={ringStyle}></View>
                         <View className='at-loading__ring' style={ringStyle}></View>
                         <View className='at-loading__ring' style={ringStyle}></View>
                     </View>}
-                    <Text   className='textMsg'   style={{color:color}} >{ishow?'没有数据啦 ~':'加载中...'}</Text>
+                    <Text   className='textMsg'   style={{color:color}} >{ishow ? '没有数据啦 ~' : '加载中...'}</Text>
             </View>}
           </View>
       )

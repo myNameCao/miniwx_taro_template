@@ -10,7 +10,7 @@ class Dailog extends Component {
        this.myAnimation(0)
     }
     myAnimation(num){
-        var animation = wx.createAnimation({
+        let animation = wx.createAnimation({
             duration: 400,
             timingFunction: "ease",
           })
@@ -20,11 +20,11 @@ class Dailog extends Component {
           })
      }
      changeLog(){
-            const {changeLog,close}=this.props;
+            const {changeLog,close} = this.props;
             if(!close)return
             this.myAnimation(400)
             setTimeout(function () {
-                changeLog&&changeLog(false)
+                changeLog && changeLog(false)
             },400)
      }
     render(){
@@ -36,6 +36,4 @@ class Dailog extends Component {
     }
 }
 
-
-
-export default   Dailog
+export default  Dailog
