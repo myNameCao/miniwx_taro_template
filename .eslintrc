@@ -10,8 +10,12 @@
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx", ".tsx"] }],
     "no-multiple-empty-lines": [1, {"max": 2}],
     "space-in-parens": 2,
+    "semi-spacing": ["error", {"before": false, "after": true}],
+    "no-whitespace-before-property":2,
     "no-redeclare": 2,
-    "no-var": 0,
+    "no-var": 1,
+    "eol-last":2,
+    "space-infix-ops":2,
     "react/sort-comp": [1, {
       "order": [
         "config",
