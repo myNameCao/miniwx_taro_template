@@ -17,7 +17,6 @@ export default class Qrcode extends Component {
 
   componentDidMount () {
     const _this = this;
-  console.log(this.$router.params)
     const { urlStr } = this.$router.params;
     const query = Taro.createSelectorQuery().in(this.$scope)
         query.select('.qrcodeView').boundingClientRect(rect =>{

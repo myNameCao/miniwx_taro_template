@@ -10,18 +10,18 @@ export default class Login extends Component {
 
   config = {
     navigationBarTitleText: '地推身份登记',
-    phone:2,
+  }
+  state={
+    phone:'',
     code:'',
     loading:'loading',
+    canSend:true,
     showDialog:false,
     getCodeing:false,
     secend:60
   }
   time=''
-
-
   componentDidMount () {
-     
     let _this = this
     checkAuthorization('userInfo').then(function(isPass){
       if(!isPass){
@@ -43,6 +43,7 @@ export default class Login extends Component {
   componentDidHide () { }
 
   nextClick () {
+   if(!this.state.canSend) return 
     let str =  this.checkoutlogin(this.state.phone,this.state.code)
     if(str){
       Taro.showToast({
@@ -54,7 +55,8 @@ export default class Login extends Component {
     }
     if(!signUp({phone:this.state.phone,code:this.state.code,})){
       this.setState({
-        showDialog:true
+        showDialog:true,
+        canSend:false 
        })
     }
   }
@@ -149,7 +151,7 @@ export default class Login extends Component {
            <View onClick={this.getCode.bind(this)} className={['getcode',this.state.getCodeing ? 'graycode' : '']}>{this.state.getCodeing ? `${this.state.secend} s` : '获取验证码'}</View>
          </View>
          <Button className='btn' onClick={this.nextClick} >下一步</Button>
-         <Loading  status={this.state.loading} size='50'></Loading>
+         <Loading  status={this.state.loading} size='50' color='white' ></Loading>
          {this.state.showDialog && <Dialog  >
             <View   className='logContent' >
                 <View  className='logTitle'>想要你的授权</View>
