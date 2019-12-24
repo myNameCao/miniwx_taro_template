@@ -80,6 +80,7 @@ export default class Login extends Component {
  }
   getCode (){
     if(this.state.getCodeing) return
+    let _this = this
     let str = this.checkoutlogin(this.state.phone,true)
     if(str){
      Taro.showToast({
@@ -90,12 +91,14 @@ export default class Login extends Component {
      return
     }
      Taro.removeStorageSync('Token')
-     this.creatTnterval()
      ajax({
        url:'getTelCode',
        data:{
          type:'dada',
          phone:this.state.phone,
+         success(){
+          _this.creatTnterval()
+         }
        }
      })
   }
@@ -145,7 +148,6 @@ export default class Login extends Component {
            <Input  onInput={this.codeChange} value={this.state.code} placeholderClass='placeholderClass' type='number' placeholder='请输入验证码' />
            <View onClick={this.getCode.bind(this)} className={['getcode',this.state.getCodeing ? 'graycode' : '']}>{this.state.getCodeing ? `${this.state.secend} s` : '获取验证码'}</View>
          </View>
-
          <Button className='btn' onClick={this.nextClick} >下一步</Button>
          <Loading  status={this.state.loading} size='50'></Loading>
          {this.state.showDialog && <Dialog  >

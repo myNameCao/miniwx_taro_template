@@ -66,9 +66,7 @@ export const login = P =>{
                 wx.redirectTo({
                   url:'/pages/login/login'
                 });//  携带  wechatToken  进入注册页面
-               
                 wechatToken = res.data.result.wechatMPToken;
-                console.log(res.data.result.wechatMPToken)
               }
             },
             success(res){
@@ -111,7 +109,6 @@ export const signUp = P =>{
       iv:iv
     },
     success(res){
-     
       Taro.navigateTo({
         url:`/pages/qrcode/qrcode?urlStr=${res.result.invitationUrl}`
       })
