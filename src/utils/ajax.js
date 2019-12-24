@@ -108,7 +108,11 @@ export const signUp = P =>{
       encryptedData:encryptedData,
       iv:iv
     },
+    error(){
+      P.success()
+    },
     success(res){
+      P.success()
       Taro.navigateTo({
         url:`/pages/qrcode/qrcode?urlStr=${res.result.invitationUrl}`
       })

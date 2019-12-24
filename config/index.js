@@ -1,3 +1,5 @@
+const path = require('path');
+
 const config = {
   projectName: 'Coil',
   date: '2019-12-20',
@@ -6,6 +8,10 @@ const config = {
     '640': 2.34 / 2,
     '750': 1,
     '828': 1.81 / 2
+  },
+  alias: {
+    '@components': path.resolve(__dirname, '../src/components'),
+    '@utils': path.resolve(__dirname, '../src/utils')
   },
   sourceRoot: 'src',
   outputRoot: 'dist',

@@ -1,10 +1,14 @@
+
+import  Dialog from  '@components/Dailog'
+import  Loading from '@components/Loading'
+
 import Taro, { Component } from '@tarojs/taro'
+
 import { View, Image ,  Input ,Button} from '@tarojs/components'
 import './login.less'
 import  logo from './logo.png'
 import  {ajax ,checkAuthorization,Authorization,signUp} from '../../utils/ajax'
-import  Dialog from '../../components/Dailog'
-import  Loading from '../../components/Loading'
+
 
 export default class Login extends Component {
 
@@ -43,6 +47,7 @@ export default class Login extends Component {
 
   nextClick () {
    if(!this.state.canSend) return 
+   let _this = this
     let str =  this.checkoutlogin(this.state.phone,this.state.code)
     if(str){
       Taro.showToast({
@@ -52,10 +57,22 @@ export default class Login extends Component {
       })
       return
     }
-    if(!signUp({phone:this.state.phone,code:this.state.code,})){
+    this.setState({
+      canSend:false
+     }) 
+     let data = { 
+              phone:this.state.phone,
+              code:this.state.code,
+              success(){
+                _this.setState({
+                  canSend:true
+                }) 
+              }
+           }
+    if(!signUp(data)){
       this.setState({
         showDialog:true,
-        canSend:false 
+        canSend:true
        })
     }
   }
@@ -97,10 +114,10 @@ export default class Login extends Component {
        data:{
          type:'dada',
          phone:this.state.phone,
-         success(){
-          _this.creatTnterval()
-         }
-       }
+       },
+       success(){
+       _this.creatTnterval()
+      }
      })
   }
   creatTnterval (){
