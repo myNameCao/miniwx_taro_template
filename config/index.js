@@ -1,7 +1,7 @@
 const path = require('path');
 
 const config = {
-  projectName: 'Coil',
+  projectName: 'taro_template',
   date: '2019-12-20',
   designWidth: 750,
   deviceRatio: {
