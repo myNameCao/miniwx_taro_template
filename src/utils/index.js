@@ -3,17 +3,17 @@
  
 import safetyCertificate  from './safetyCertificate'
 
-var formatTime = function formatTime(date) {
-  var year = date.getFullYear();
-  var month = date.getMonth() + 1;
-  var day = date.getDate();
-  var hour = date.getHours();
-  var minute = date.getMinutes();
-  var second = date.getSeconds();
+let formatTime = function formatTime(date) {
+  let year = date.getFullYear();
+  let month = date.getMonth() + 1;
+  let day = date.getDate();
+  let hour = date.getHours();
+  let minute = date.getMinutes();
+  let second = date.getSeconds();
 
   return [year, month, day].map(formatNumber).join('/') + ' ' + [hour, minute, second].map(formatNumber).join(':');
 };
-var formatNumber = function formatNumber(n) {
+let formatNumber = function formatNumber(n) {
   n = n.toString();
   return n[1] ? n : '0' + n;
 };
@@ -21,4 +21,4 @@ var formatNumber = function formatNumber(n) {
 export default {
   generate:safetyCertificate,
   formatTime: formatTime
-};
+}

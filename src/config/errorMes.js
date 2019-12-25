@@ -4,7 +4,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 //   统一的
-var fail = wx.showToast; //  函数可替换
+let fail = wx.showToast; //  函数可替换
   const errorMes = {
   10011: {
     title: '非法请求，缺少系统级参数',
@@ -107,4 +107,4 @@ var fail = wx.showToast; //  函数可替换
       }
   }
 };
-export default errorMes;
+export default errorMes

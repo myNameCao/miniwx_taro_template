@@ -63,7 +63,6 @@ export default class Qrcode extends Component {
   render () {
     return (
       <View className='qrcode'>
-         <View className='logo'>快电</View>
          <View className='title'>中国最大的职业司机充换电平台</View>
          <View className='qrcodeView'>
                <Canvas className='code' canvasId='myQrcode' />
