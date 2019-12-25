@@ -11,6 +11,7 @@ const config = {
   },
   alias: {
     '@components': path.resolve(__dirname, '../src/components'),
+    '@img': path.resolve(__dirname, '../src/static/img'),
     '@utils': path.resolve(__dirname, '../src/utils')
   },
   sourceRoot: 'src',

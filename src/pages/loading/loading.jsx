@@ -1,6 +1,6 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View, Image } from '@tarojs/components'
-import logo from './logoloding.png'
+import logo from '@img/logo.png'
 import './loading.less'
 
 import  {login} from '../../utils/ajax'
@@ -12,7 +12,7 @@ export default class Loading extends Component {
   }
   
   componentWillMount () { 
-    login({})
+     login({})
   }
 
   componentDidMount () { }

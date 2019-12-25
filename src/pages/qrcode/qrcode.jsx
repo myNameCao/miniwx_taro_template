@@ -1,11 +1,8 @@
+
 import drawQrcode from 'weapp-qrcode'
 import Taro, { Component } from '@tarojs/taro'
-import { View, Image,Canvas } from '@tarojs/components'
+import { View, Canvas } from '@tarojs/components'
 import './qrcode.less'
-
-import logo from './logo1.png'
-import backimg from './backimg.png'
-
 
 export default class Qrcode extends Component {
 
@@ -66,13 +63,11 @@ export default class Qrcode extends Component {
   render () {
     return (
       <View className='qrcode'>
-         <Image className='logo' src={logo} />  
+         <View className='logo'>快电</View>
          <View className='title'>中国最大的职业司机充换电平台</View>
-         <View className='imgView'><Image src={backimg} /></View>
          <View className='qrcodeView'>
                <Canvas className='code' canvasId='myQrcode' />
           </View>
-         <View   onClick={this.creatpng.bind(this)} className='btnSave'>保存至手机相册</View>
       </View>
     )
   }

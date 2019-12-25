@@ -113,7 +113,7 @@ export const signUp = P =>{
     },
     success(res){
       P.success()
-      Taro.navigateTo({
+      wx.navigateTo({
         url:`/pages/qrcode/qrcode?urlStr=${res.result.invitationUrl}`
       })
     }

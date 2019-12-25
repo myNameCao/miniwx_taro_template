@@ -1,4 +1,5 @@
 
+import logo from '@img/logo.png'
 import  Dialog from  '@components/Dailog'
 import  Loading from '@components/Loading'
 
@@ -6,7 +7,7 @@ import Taro, { Component } from '@tarojs/taro'
 
 import { View, Image ,  Input ,Button} from '@tarojs/components'
 import './login.less'
-import  logo from './logo.png'
+
 import  {ajax ,checkAuthorization,Authorization,signUp} from '../../utils/ajax'
 
 
@@ -161,12 +162,13 @@ export default class Login extends Component {
       <View className='index'>
          <View className='logo'><Image src={logo} /></View>
          <View className='telphone line'>
-           <Input type='number' onInput={this.telChange} value={this.state.phone} placeholderClass='placeholderClass' placeholder='请输入手机号' /></View>
+            <Input type='number' onInput={this.telChange} value={this.state.phone} placeholderClass='placeholderClass' placeholder='请输入手机号' />
+            <View onClick={this.getCode.bind(this)} className={['getcode',this.state.getCodeing ? 'graycode' : '']}>{this.state.getCodeing ? `${this.state.secend} s` : '获取验证码'}</View>
+          </View>
          <View className='code line'>
            <Input  onInput={this.codeChange} value={this.state.code} placeholderClass='placeholderClass' type='number' placeholder='请输入验证码' />
-           <View onClick={this.getCode.bind(this)} className={['getcode',this.state.getCodeing ? 'graycode' : '']}>{this.state.getCodeing ? `${this.state.secend} s` : '获取验证码'}</View>
          </View>
-    <Button className='btn' onClick={this.nextClick} >{this.state.canSend ? '下一步' : <Loading  status='loading' size='40' color='white' ></Loading>}</Button>
+    <Button className='btn' onClick={this.nextClick} >{this.state.canSend ? '立刻登录' : <Loading  status='loading' size='40' color='white' ></Loading>}</Button>
          
          {this.state.showDialog && <Dialog  >
             <View   className='logContent' >

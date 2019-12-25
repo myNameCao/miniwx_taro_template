@@ -1,40 +1,38 @@
 .qrcode{
+  position: relative;
  height: 100vh;
  width:  100%;
- background:#DE505B ;
- border:#DE505B  1px  solid ;
+ background:url('https://gkd-pro-image.oss-cn-beijing.aliyuncs.com/kd_h5/background.png')  no-repeat  ;
+ background-size: 100% 100%;
+ background-position: center;
+ border :white 0.1px  solid ;
  box-sizing: border-box;
 }
-
 .logo{
   display: block;
   width: 172px;
   height: 82px;
-  margin:  40px  auto ;
-  image{
-    width: 100%;
-    height: 100%; 
-  }
+  text-align: center;
+  line-height: 82px;
+  font-size: 30Px;
+  color: #F3E6B2;
+  margin:  40px  auto   ;
 }
 .title{
   font-weight:400;
-  font-size: 20Px;
+  font-size: 22Px;
   color: white;
+  color: #F3E6B2;
   text-align: center;
 
 }
-.imgView{
-  width: 642px;
-  height: 384px;
-  margin:  30px auto;
-  image{
-    width: 100%;
-    height: 100%; 
-  }
-}
+
 .qrcodeView{
-  margin: 0 auto;
-  width: 332px;
+  position: absolute;
+  bottom: 110px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 330px;
   height: 332px;
   background: white;
   border: 1px white solid;
@@ -45,17 +43,5 @@
       height: 100%;
     }
 }
-.btnSave{
-  width:500px;
-  height:80px;
-  line-height:80px;
-  font-size:16Px;
-  text-align: center;
-  color: #EA3341;
-  font-weight:400;
-  background: white;
-  border-radius: 50px;
-  margin:60px  auto;
 
-}
 
