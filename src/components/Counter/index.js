@@ -10,7 +10,7 @@ import './index.less'
     const [ time, setTime ] = useState(60)
     console.log('定时器')
     function increment () {
-        
+
         setStart(true)
     }
     useEffect(() => { // effect 函数，不接受也不返回任何参数
