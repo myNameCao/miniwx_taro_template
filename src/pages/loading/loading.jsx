@@ -10,6 +10,9 @@ export default class Loading extends Component {
   config = {
     navigationBarTitleText: 'loading'
   }
+  state={
+    
+  }
   
   componentWillMount () { 
      login({})

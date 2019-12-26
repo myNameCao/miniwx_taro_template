@@ -158,6 +158,7 @@ export default class Login extends Component {
     Authorization(data.detail)
   }
   render () {
+    console.log('change')
     return (
       <View className='index'>
          <View className='logo'><Image src={logo} /></View>
