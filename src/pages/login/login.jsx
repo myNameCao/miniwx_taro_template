@@ -2,14 +2,14 @@
 import logo from '@img/logo.png'
 import  Dialog from  '@components/Dailog'
 import  Loading from '@components/Loading'
+import  Counter from '@components/Counter'
 
 import Taro, { Component } from '@tarojs/taro'
 
 import { View, Image ,  Input ,Button} from '@tarojs/components'
 import './login.less'
 
-import  {ajax ,checkAuthorization,Authorization,signUp} from '../../utils/ajax'
-
+import  {checkAuthorization,Authorization,signUp} from '../../utils/ajax'
 
 export default class Login extends Component {
 
@@ -21,8 +21,6 @@ export default class Login extends Component {
     code:'',
     canSend:true,
     showDialog:false,
-    getCodeing:false,
-    secend:60
   }
   time=''
   componentDidMount () {
@@ -97,53 +95,6 @@ export default class Login extends Component {
      return '请输入验证码'
     }
  }
-  getCode (){
-    if(this.state.getCodeing) return
-    let _this = this
-    let str = this.checkoutlogin(this.state.phone,true)
-    if(str){
-     Taro.showToast({
-       title: str,
-       icon: 'none',
-       duration: 2000
-     })
-     return
-    }
-     Taro.removeStorageSync('Token')
-     ajax({
-       url:'getTelCode',
-       data:{
-         type:'dada',
-         phone:this.state.phone,
-       },
-       success(){
-       _this.creatTnterval()
-      }
-     })
-  }
-  creatTnterval (){
-    const _this = this;
-      this.setState({
-        getCodeing:true,
-        secend:60
-      });
-      clearInterval(this.time)
-      this.time = setInterval(function (){
-        _this.setState({
-          secend:--_this.state.secend
-        })
-        if(!_this.state.secend){
-          _this.clearInter()
-          return
-        }
-      },1000)
-  }
-  clearInter (){
-    this.setState({
-      getCodeing:false,
-    })
-    clearInterval(this.time)
-  }
   codeChange (e){
   let str = e.target.value.replace(/\D/g,'') || '';
    this.setState({
@@ -164,7 +115,7 @@ export default class Login extends Component {
          <View className='logo'><Image src={logo} /></View>
          <View className='telphone line'>
             <Input type='number' onInput={this.telChange} value={this.state.phone} placeholderClass='placeholderClass' placeholder='请输入手机号' />
-            <View onClick={this.getCode.bind(this)} className={['getcode',this.state.getCodeing ? 'graycode' : '']}>{this.state.getCodeing ? `${this.state.secend} s` : '获取验证码'}</View>
+            <Counter my-class='getcodebtn'></Counter>
           </View>
          <View className='code line'>
            <Input  onInput={this.codeChange} value={this.state.code} placeholderClass='placeholderClass' type='number' placeholder='请输入验证码' />
