@@ -12,7 +12,7 @@ export default class Loading extends Component {
     }
     render () {
       const { color, size ,status } = this.props
-      console.log(color, size ,status)
+     
       const sizeStyle = {
         width: size ? `${Taro.pxTransform(parseInt(size))}` : '',
         height: size ? `${Taro.pxTransform(parseInt(size))}` : '',

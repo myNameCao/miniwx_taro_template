@@ -4,50 +4,25 @@ import  Dialog from  '@components/Dailog'
 import  Loading from '@components/Loading'
 import  Counter from '@components/Counter'
 
-import Taro, { Component } from '@tarojs/taro'
+import Taro, {useState} from '@tarojs/taro'
 
 import { View, Image ,  Input ,Button} from '@tarojs/components'
+
 import './login.less'
 
-import  {checkAuthorization,Authorization,signUp} from '../../utils/ajax'
+import  {Authorization,signUp} from '../../utils/ajax'
 
-export default class Login extends Component {
+function Login () {
+  
+  const [ phone, setPhone ] = useState('')
+  const [ code, setCode ] = useState('')
+  const [ canSend, setCanSend ] = useState(true)
+  const [ showDialog, setshowDialog ] = useState(false)
 
-  config = {
-    navigationBarTitleText: '地推身份登记',
-  }
-  state={
-    phone:'',
-    code:'',
-    canSend:true,
-    showDialog:false,
-  }
-  time=''
-  componentDidMount () {
-    let _this = this
-    checkAuthorization('userInfo').then(function(isPass){
-      if(!isPass){
-        _this.setState({
-          showDialog:true
-        })
-      }else{
-        wx.getUserInfo({success(res){
-          Authorization(res)
-        }})
-      }
-    }) 
-  }
-
-  componentWillUnmount () { }
-
-  componentDidShow () { }
-
-  componentDidHide () { }
-
-  nextClick () {
-   if(!this.state.canSend) return 
-   let _this = this
-    let str =  this.checkoutlogin(this.state.phone,this.state.code)
+  
+function nextClick () {
+   if(canSend) return 
+    let str =  checkoutlogin(phone,code)
     if(str){
       Taro.showToast({
         title: str,
@@ -56,34 +31,26 @@ export default class Login extends Component {
       })
       return
     }
-    this.setState({
-      canSend:false
-     }) 
+     setCanSend(false) 
      let data = { 
               phone:this.state.phone,
               code:this.state.code,
               success(){
-                _this.setState({
-                  canSend:true
-                }) 
+               setCanSend(true) 
               }
            }
     if(!signUp(data)){
-      this.setState({
-        showDialog:true,
-        canSend:true
-       })
+      setCanSend(true)  
+      setshowDialog(false)
     }
-  }
-  telChange (e){
+}
+function telChange (e){
     let str = e.target.value.replace(/\D/g,'') * 1 || '';
     str = (str + '').substr(0,11)
-    this.setState({
-      phone:str
-    })
+    setPhone(str)
     return  str
-  }
-  checkoutlogin (tel,code){
+}
+function checkoutlogin (tel ,tempcode){
     if(!tel){
      return '请输入电话号'
     }
@@ -91,48 +58,48 @@ export default class Login extends Component {
     if(!isphone){
       return '请输正确的手机号'
     }
-    if(!code){
+    if(!tempcode){
      return '请输入验证码'
     }
- }
-  codeChange (e){
+}
+function codeChange (e){
   let str = e.target.value.replace(/\D/g,'') || '';
-   this.setState({
-    code:str
-   })
+   setCode(str)
    return  str
-  }
-  getUserInfo(data){
+}
+function getUserInfo(data){
     this.setState({
       showDialog:false
     })
     Authorization(data.detail)
-  }
-  render () {
-    console.log('change')
+}
     return (
       <View className='index'>
          <View className='logo'><Image src={logo} /></View>
          <View className='telphone line'>
-            <Input type='number' onInput={this.telChange} value={this.state.phone} placeholderClass='placeholderClass' placeholder='请输入手机号' />
+            <Input type='number' onInput={telChange} value={phone} placeholderClass='placeholderClass' placeholder='请输入手机号' />
             <Counter my-class='getcodebtn'></Counter>
           </View>
          <View className='code line'>
-           <Input  onInput={this.codeChange} value={this.state.code} placeholderClass='placeholderClass' type='number' placeholder='请输入验证码' />
+           <Input  onInput={codeChange} value={code} placeholderClass='placeholderClass' type='number' placeholder='请输入验证码' />
          </View>
-    <Button className='btn' onClick={this.nextClick} >{this.state.canSend ? '立刻登录' : <Loading  status='loading' size='40' color='white' ></Loading>}</Button>
+    <Button className='btn' onClick={nextClick} >{canSend ? '立刻登录' : <Loading  status='loading' size='40' color='white' ></Loading>}</Button>
          
-         {this.state.showDialog && <Dialog  >
+         {showDialog && <Dialog  >
             <View   className='logContent' >
                 <View  className='logTitle'>想要你的授权</View>
                 <View  className='logmsg'>为了提供更好的服务</View>
                 <View  className='logmsg'>请在稍后的提示框点击“允许”</View>
                 <View  className='logImage'></View>
-                <Button   open-type='getUserInfo'   onGetuserinfo={this.getUserInfo} className='logBtn' >我知道了</Button>
+                <Button   open-type='getUserInfo'   onGetuserinfo={getUserInfo} className='logBtn' >我知道了</Button>
             </View>
           </Dialog>}
       </View>
     )
-  }
+
 }
 
+Login.config = {
+  navigationBarTitleText: ' 登录',
+}
+export default  Login 
