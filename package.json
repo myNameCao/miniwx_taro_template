@@ -24,6 +24,7 @@
 		"dev:h5": "npm run build:h5 -- --watch",
 		"dev:rn": "npm run build:rn -- --watch",
 		"dev:qq": "npm run build:qq -- --watch",
+		"test": "node ./test.js",
 		"dev:quickapp": "npm run build:quickapp -- --watch"
 	},
 	"author": "",
