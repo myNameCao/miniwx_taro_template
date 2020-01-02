@@ -18,6 +18,7 @@ export default class Qrcode extends Component {
     const query = Taro.createSelectorQuery().in(this.$scope)
         query.select('.qrcodeView').boundingClientRect(rect =>{
             _this.height = rect.height
+        
             
         }).exec();
   
