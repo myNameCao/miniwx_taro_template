@@ -4,4 +4,4 @@ node_js:
  - '@latest'
  - '10.16.2'
 
-script: make test
+## script: make test
