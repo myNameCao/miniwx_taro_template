@@ -14,11 +14,11 @@ export default class Qrcode extends Component {
 
   componentDidMount () {
     const _this = this;
-    const { urlStr } = this.$router.params;
+    // const { urlStr } = this.$router.params;
     const query = Taro.createSelectorQuery().in(this.$scope)
         query.select('.qrcodeView').boundingClientRect(rect =>{
             _this.height = rect.height
-            _this.creatQrcode(urlStr)
+            
         }).exec();
   
   }
