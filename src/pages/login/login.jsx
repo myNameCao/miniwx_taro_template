@@ -84,7 +84,6 @@ function getUserInfo(data){
            <Input  onInput={codeChange} value={code} placeholderClass='placeholderClass' type='number' placeholder='请输入验证码' />
          </View>
     <Button className='btn' onClick={nextClick} >{canSend ? '立刻登录' : <Loading  status='loading' size='40' color='white' ></Loading>}</Button>
-         
          {showDialog && <Dialog  >
             <View   className='logContent' >
                 <View  className='logTitle'>想要你的授权</View>
