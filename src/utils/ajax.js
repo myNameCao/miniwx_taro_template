@@ -69,10 +69,10 @@ export const login = P =>{
                 wechatToken = res.data.result.wechatMPToken;
               }
             },
-            success(res){
+            success(){
               // wx.setStorage({ key: 'Token', data: res.result.token });
               wx.redirectTo({
-                url:`/pages/qrcode/qrcode?urlStr=${res.result.invitationUrl}`
+                url:`/pages/index/index`
               });//  携带  wechatToken  进入注册页面
               //  获得当前页面   刷新
             }
@@ -111,11 +111,9 @@ export const signUp = P =>{
     error(){
       P.success()
     },
-    success(res){
+    success(){
       P.success()
-      wx.navigateTo({
-        url:`/pages/qrcode/qrcode?urlStr=${res.result.invitationUrl}`
-      })
+      
     }
   })
   return true 
