@@ -15,7 +15,7 @@ class App extends Component {
     pages: [
       'pages/loading/loading',
       'pages/login/login',
-      'pages/qrcode/qrcode'
+      'pages/index/index'
     ],
     window: {
       backgroundTextStyle: 'light',
