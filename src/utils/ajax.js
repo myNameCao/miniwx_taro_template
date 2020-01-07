@@ -7,8 +7,9 @@ import api from '../config/index';
 
 const czb_api = api['czb_api'];
 
+const ENV = process.env.NODE_ENV;
 
-const BASE = czb_api[czb_api.ENV];
+const BASE = czb_api[ENV];
 
 let encryptedData = '',wechatToken = '',iv = '';
 

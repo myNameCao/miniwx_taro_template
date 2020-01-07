@@ -1,15 +1,14 @@
 
 export  default  {
   czb_api: {
-    ENV: "dev",
     platformType:'',
-    master: {
+    production: {
       appKey: "kd_prod_mp",
       appId:'wx01440835f1987e8b',
       appSecret: "15cdf1eaf2110a3009bf2be5d3e53c3c",
       host: "https://mpcs.fleetingpower.com",
     },
-    dev: {
+    development: {
       appKey: "test_mp",
       appId:'wx01440835f1987e8b',
       appSecret: "12343456900156789012",
