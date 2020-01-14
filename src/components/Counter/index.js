@@ -6,25 +6,24 @@ import './index.less'
 
 
  function  Counter  (){
+    const {outFn} = this.props;
     const [ start, setStart ] = useState(false)
     const [ time, setTime ] = useState(60)
-    console.log('定时器')
     function increment () {
-
+         if(start)return 
         setStart(true)
+        if(outFn)outFn()
     }
-    useEffect(() => { // effect 函数，不接受也不返回任何参数
+    useEffect(() => { 
         let interval
         if (start) {
           interval = setInterval(() => {
-            // setTime(time - 1)  //time 在 effect 闭包函数里是拿不到准确值的
-            setTime(t => t - 1) // 在 setTime 的回调函数参数里可以拿到对应 state 的最新值
+            setTime(t => t - 1) 
           }, 1000)
         }
-        return () => clearInterval(interval) // clean-up 函数，当前组件被注销时调用
-      }, [ start ]) // 依赖数组，当数组中变量变化时会调用 effect 函数
+        return () => clearInterval(interval) 
+      }, [ start ]) 
     return (
-        
         <View onClick={increment} className={['my-class','getcode',start ? 'graycode' : '']}>{start ? `${time} s` : '获取验证码'}</View>
     )
 }

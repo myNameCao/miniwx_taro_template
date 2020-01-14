@@ -4,25 +4,23 @@ import  Dialog from  '@components/Dailog'
 import  Loading from '@components/Loading'
 import  Counter from '@components/Counter'
 
+
 import Taro, {useState} from '@tarojs/taro'
 
 import { View, Image ,  Input ,Button} from '@tarojs/components'
 
 import './login.less'
 
-import  {Authorization,signUp} from '../../utils/ajax'
+import  {Authorization,signUp,ajax,checkAuthorization} from '../../utils/ajax'
 
 function Login () {
-  
   const [ phone, setPhone ] = useState('')
   const [ code, setCode ] = useState('')
   const [ canSend, setCanSend ] = useState(true)
   const [ showDialog, setshowDialog ] = useState(false)
 
-  
-function nextClick () {
-   if(canSend) return 
-    let str =  checkoutlogin(phone,code)
+function getCode (){
+   let str = checkout(phone,true)
     if(str){
       Taro.showToast({
         title: str,
@@ -31,18 +29,15 @@ function nextClick () {
       })
       return
     }
-     setCanSend(false) 
-     let data = { 
-              phone:this.state.phone,
-              code:this.state.code,
-              success(){
-               setCanSend(true) 
-              }
-           }
-    if(!signUp(data)){
-      setCanSend(true)  
-      setshowDialog(false)
-    }
+    ajax({
+      url: "getTelCode",
+      data: {
+        type: "dada",
+        phone: phone
+      }
+    });
+    return true
+
 }
 function telChange (e){
     let str = e.target.value.replace(/\D/g,'') * 1 || '';
@@ -50,7 +45,7 @@ function telChange (e){
     setPhone(str)
     return  str
 }
-function checkoutlogin (tel ,tempcode){
+function checkout(tel ,tempcode){
     if(!tel){
      return '请输入电话号'
     }
@@ -67,18 +62,51 @@ function codeChange (e){
    setCode(str)
    return  str
 }
+function checkoutsInfo(){
+  checkAuthorization('userInfo').then(function(isPass){
+    if(!isPass){
+      setshowDialog(true)
+    }else{
+      wx.getUserInfo({success(res){
+        Authorization(res)
+      }})
+    }
+  })
+}
 function getUserInfo(data){
-    this.setState({
-      showDialog:false
-    })
+    setshowDialog(false)
     Authorization(data.detail)
+}
+function nextClick () {
+  if(!canSend) return
+   let str =  checkout(phone,code)
+   if(str){
+     Taro.showToast({
+       title: str,
+       icon: 'none',
+       duration: 2000
+     })
+     return
+   }
+    setCanSend(false)
+    let data = {
+             phone:this.state.phone,
+             code:this.state.code,
+             success(){
+              setCanSend(true)
+             }
+          }
+   if(!signUp(data)){
+     setCanSend(true)
+     checkoutsInfo()
+   }
 }
     return (
       <View className='index'>
          <View className='logo'><Image src={logo} /></View>
          <View className='telphone line'>
             <Input type='number' onInput={telChange} value={phone} placeholderClass='placeholderClass' placeholder='请输入手机号' />
-            <Counter my-class='getcodebtn'></Counter>
+            <Counter outFn={getCode} my-class='getcodebtn' ></Counter>
           </View>
          <View className='code line'>
            <Input  onInput={codeChange} value={code} placeholderClass='placeholderClass' type='number' placeholder='请输入验证码' />
@@ -101,4 +129,4 @@ function getUserInfo(data){
 Login.config = {
   navigationBarTitleText: ' 登录',
 }
-export default  Login 
+export default  Login
