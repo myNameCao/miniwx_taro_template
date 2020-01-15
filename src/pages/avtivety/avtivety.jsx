@@ -257,6 +257,7 @@ export default class Avtivety1 extends Component {
               </View>) : <Button className='statusBtnView' open-type='share' >邀请好友助力</Button>}
             </View>}
           </View>
+          
         </View>
         <View className='peoplelist'>
           <View className='listHeat'>
