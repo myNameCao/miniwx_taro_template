@@ -1,6 +1,7 @@
 
 import Taro, { Component } from '@tarojs/taro'
 import { View,Button } from '@tarojs/components'
+
 import './index.less'
 
 export default class Qrcode extends Component {
@@ -21,7 +22,8 @@ export default class Qrcode extends Component {
   componentDidHide () { }
 
   onShareAppMessage (option){
-    console.log(option)//  获得分享的参数
+    const sharefromButton = option.from == 'button'
+    console.log(sharefromButton) // 判断分享出来的位置
     return {
       title: '分享dome',
       path: '/pages/index/index',

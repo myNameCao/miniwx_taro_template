@@ -27,7 +27,6 @@ export const ajax = P => {
       'content-type': 'application/x-www-form-urlencoded'
     },
     success: function(res) {
-    if(P.loading){wx.hideLoading()}
     let errObj = erroeMes[res.data.code];
       if(res.data.code != 200){//  异常捕捉
         P.special ? P.special(res) : (errObj ? errObj.callBack(res.data,login) : erroeMes.default(res.data,P.error))
@@ -35,8 +34,10 @@ export const ajax = P => {
         P.success && P.success(res.data)
       }
     },
-    fail: function(res) {
+    complete(){
       if(P.loading){wx.hideLoading()}
+    },
+    fail: function(res) {
       P.fail && P.fail(res)
       wx.showToast({
         title: '网络请求失败，请检查您的网络配置',

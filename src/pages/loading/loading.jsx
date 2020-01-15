@@ -1,9 +1,9 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View, Image } from '@tarojs/components'
+import  {login} from '@utils/ajax'
 import logo from '@img/logo.png'
 import './loading.less'
 
-import  {login} from '../../utils/ajax'
 
 export default class Loading extends Component {
 
