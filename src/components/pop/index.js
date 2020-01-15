@@ -1,7 +1,6 @@
 import Taro from '@tarojs/taro'
 
-import {View,Image} from '@tarojs/components'
-import btn from '@img/btn.png'
+import {View} from '@tarojs/components'
 import './index.less'
 
  function  Pop  (){
@@ -15,7 +14,7 @@ import './index.less'
            <View className='content'>
              <View className='msg'>助力成功</View>
              <View className='msg1'>请耐心等待开奖!</View>
-             <View className='btn' onClick={close}><Image src={btn} /></View>
+             <View className='btn' onClick={close}>close</View>
            </View>
       </View> : ''
     )

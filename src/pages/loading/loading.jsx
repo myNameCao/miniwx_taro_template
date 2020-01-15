@@ -13,19 +13,9 @@ export default class Loading extends Component {
   state={
     
   }
-  
   componentWillMount () { 
      login({})
   }
-
-  componentDidMount () { }
-
-  componentWillUnmount () { }
-
-  componentDidShow () { }
-
-  componentDidHide () { }
-
   render () {
     return (
       <View className='loading'>

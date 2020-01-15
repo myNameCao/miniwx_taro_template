@@ -14,6 +14,7 @@ class App extends Component {
   config = {
     pages: [
       'pages/loading/loading',
+      'pages/avtivety/avtivety',
       'pages/login/login',
       'pages/index/index'
     ],

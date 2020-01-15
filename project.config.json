@@ -2,7 +2,7 @@
 	"miniprogramRoot": "dist/",
 	"projectname": "taro_template",
 	"description": "",
-	"appid": "wx63b8da1d2f73396f",
+	"appid": "wx36c16e20186cd2bf",
 	"setting": {
 		"urlCheck": false,
 		"es6": false,
@@ -58,6 +58,13 @@
 					"name": "pages/login/login",
 					"pathName": "pages/login/login",
 					"query": "",
+					"scene": null
+				},
+				{
+					"id": 2,
+					"name": "avtivety",
+					"pathName": "pages/avtivety/avtivety",
+					"query": "activityCode=401TFGT7",
 					"scene": null
 				}
 			]
