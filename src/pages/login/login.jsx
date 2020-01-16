@@ -5,7 +5,7 @@ import  Loading from '@components/Loading'
 import  Counter from '@components/Counter'
 
 
-import Taro, {useState} from '@tarojs/taro'
+import Taro, {useState,useEffect} from '@tarojs/taro'
 
 import { View, Image ,  Input ,Button} from '@tarojs/components'
 
@@ -18,7 +18,9 @@ function Login () {
   const [ code, setCode ] = useState('')
   const [ canSend, setCanSend ] = useState(true)
   const [ showDialog, setshowDialog ] = useState(false)
-
+  useEffect(()=>{
+    checkoutsInfo() 
+  },[])
 function getCode (){
    let str = checkout(phone,true)
     if(str){

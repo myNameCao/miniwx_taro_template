@@ -5,12 +5,12 @@ import {View} from '@tarojs/components'
 import './index.less'
 
 
- function  Counter  (){
-    const {outFn} = this.props;
+ function  Counter  (props){
+    const {outFn} = props;
     const [ start, setStart ] = useState(false)
     const [ time, setTime ] = useState(60)
     function increment () {
-         if(start)return 
+        if(start)return 
         setStart(true)
         if(outFn)outFn()
     }
@@ -27,9 +27,6 @@ import './index.less'
         <View onClick={increment} className={['my-class','getcode',start ? 'graycode' : '']}>{start ? `${time} s` : '获取验证码'}</View>
     )
 }
-
-
 Counter.externalClasses =  ['my-class']
- 
 
  export default  Counter
