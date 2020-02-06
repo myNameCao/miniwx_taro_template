@@ -12,7 +12,7 @@ export default {
       appKey: "fl_test_mp",
       appId: "wx08061489992067f3",
       appSecret: "00d9f9637625a46fdb6861d79d207cdf",
-      host: "https://test-mpcs.fleetingpower.com"
+      host: "127.0.0.1"
     },
     path: {
       getTelCode: "/services/v3/begin/commonSendMsg", //  get phone code

@@ -20,16 +20,6 @@ export default class Qrcode extends Component {
   componentDidShow () { }
 
   componentDidHide () { }
-
-  onShareAppMessage (option){
-    const sharefromButton = option.from == 'button'
-    console.log(sharefromButton) // 判断分享出来的位置
-    return {
-      title: '分享dome',
-      path: '/pages/index/index',
-      imageUrl: 'https://gkd-pro-image.oss-cn-beijing.aliyuncs.com/kd_miniProgram/shareImage.png'
-    }
-  }
   render () {
     return (
       <View className='index'>
