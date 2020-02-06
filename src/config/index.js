@@ -4,15 +4,15 @@ export default {
     platformType: "10088001",
     production: {
       appKey: "fl_prod_mp",
-      appId: "wx08061489992067f3",
-      appSecret: "00d9f9637625a46fdb6861d79d207cdf",
-      host: "https://mpcs.fleetingpower.com"
+      appId: '',
+      appSecret: '',
+      host: ''
     },
     development: {
-      appKey: "fl_test_mp",
-      appId: "wx08061489992067f3",
-      appSecret: "00d9f9637625a46fdb6861d79d207cdf",
-      host: "https://test-mpcs.fleetingpower.com"
+      appKey: "",
+      appId: "",
+      appSecret: "",
+      host: ""
     },
     path: {
       getTelCode: "/services/v3/begin/commonSendMsg", //  get phone code
