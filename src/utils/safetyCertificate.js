@@ -2,7 +2,6 @@
 /*
    safety certificate  
    安全认证  
-   地址:"http://wiki.czb365.com/pages/viewpage.action?pageId=1147132"
 */
  
 
