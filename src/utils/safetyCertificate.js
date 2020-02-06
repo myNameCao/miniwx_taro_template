@@ -10,11 +10,11 @@ import MD5 from 'md5'
 
 import api from '../config/index'
 
-const czb_api = api['czb_api']
+const api_private = api['private']
 
 const ENV =  process.env.NODE_ENV;
 
-const BASE = czb_api[ENV]
+const BASE = api_private[ENV]
 
 const generate =  res => {
         res.app_key = BASE.appKey

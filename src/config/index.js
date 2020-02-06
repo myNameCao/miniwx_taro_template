@@ -1,6 +1,6 @@
 
 export default {
-  czb_api: {
+private: {
     platformType: "",
     production: {
       appKey: "",
@@ -16,15 +16,13 @@ export default {
     },
     path: {
       getTelCode: "", //  get phone code
-      signUp: "", // login
-      signIn: "", // signIn
       
     }
   },
-  czb_public: {
+  public: {
     path: {
-      downComent: "/public/comment/download"
+      downComent: ""
     }
   },
-  czb_webHM: {}
+  webHM: {}
 };
