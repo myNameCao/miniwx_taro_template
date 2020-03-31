@@ -15,13 +15,13 @@ let encryptedData = '',wechatToken = '',iv = '';
 
 export const ajax = P => {
   let data = P.data || {};
-  let portUrl = BASE['host'] + czb_api['path'][P.url]
+  let portUrl = BASE['host'] + api_private['path'][P.url]
   data.token = wx.getStorageSync('Token') || '';
-  let datas = util.generate(data);
+  data = util.generate(data);
   if(P.loading){wx.showLoading({title: '加载中',mask:true})}
   wx.request({
     url: portUrl,
-    data: datas,
+    data: data,
     method: P.type || 'POST',
     header: {
       'content-type': 'application/x-www-form-urlencoded'
